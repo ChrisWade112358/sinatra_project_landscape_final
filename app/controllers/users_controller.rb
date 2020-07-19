@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
       
     get '/users' do
-        if current_user 
+        if current_user && current_user.password == ENV.fetch("ADMIN")
             @users= User.all
             erb :'/users/index'
         else
@@ -12,11 +12,11 @@ class UsersController < ApplicationController
     end
 
     get '/users/new' do 
-        if current_user 
+        if current_user && current_user.password == ENV.fetch("ADMIN")
             erb :'/users/new'
         else
             puts "2. You do not have access to this information"
-                erb :"/"
+                erb :welcome
         end
     end
 
@@ -31,7 +31,7 @@ class UsersController < ApplicationController
 
     get '/users/:id/edit' do 
         @user = current_user
-        if @user
+        if @user && current_user.password == ENV.fetch("ADMIN")
             erb :'/users/edit'
         else
             redirect "/users"
@@ -40,8 +40,9 @@ class UsersController < ApplicationController
 
     post '/users' do
         @user = User.create(params)
+        @user.employee = true
         if @user.save
-            @user.employee = true
+            
             redirect "/users/#{@user.id}"
         else
             puts "User Record Not Created Please Try Again"
@@ -64,7 +65,7 @@ class UsersController < ApplicationController
 
     delete '/users/:id' do
         user = User.find_by_id(params[:id])
-        if user
+        if user && current_user.password == ENV.fetch("ADMIN")
             user.delete
         end
         redirect '/users'
@@ -76,7 +77,7 @@ class UsersController < ApplicationController
             erb :'/customers/index'
         else
             puts "3. You do not have access to this information"
-            erb :"/"
+            erb :welcome
         end
     end
 end
