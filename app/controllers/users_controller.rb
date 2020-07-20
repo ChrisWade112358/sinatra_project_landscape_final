@@ -42,7 +42,6 @@ class UsersController < ApplicationController
         @user = User.create(params)
         @user.employee = true
         if @user.save
-            
             redirect "/users/#{@user.id}"
         else
             puts "User Record Not Created Please Try Again"
@@ -68,7 +67,7 @@ class UsersController < ApplicationController
         if user && current_user.password == ENV.fetch("ADMIN")
             user.delete
         end
-        redirect '/users'
+        redirect '/logout'
     end
 
     get '/customers' do

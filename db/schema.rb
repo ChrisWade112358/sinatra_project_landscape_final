@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200719005619) do
+ActiveRecord::Schema.define(version: 20200720132121) do
 
   create_table "customers", force: :cascade do |t|
     t.string  "first_name"
@@ -24,7 +24,7 @@ ActiveRecord::Schema.define(version: 20200719005619) do
     t.string  "password_digest"
   end
 
-  create_table "enquirys", force: :cascade do |t|
+  create_table "enquiries", force: :cascade do |t|
     t.text    "enquiry"
     t.string  "uid"
     t.integer "customer_id"

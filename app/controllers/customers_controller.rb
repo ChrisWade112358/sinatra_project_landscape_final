@@ -31,8 +31,11 @@ class UsersController < ApplicationController
 
     post '/customers' do
         customer = Customer.create(params)
-        if customer.save
-            redirect "/customers/#{customer.id}"
+        session[:customer_id] = customer.id
+        session[:email] = customer.email
+        binding.pry
+        if customer
+            redirect '/enquiries/new'
         else
             puts "User Record Not Created Please Try Again"
             redirect "/customers/new"
@@ -56,6 +59,6 @@ class UsersController < ApplicationController
         if customer
             customer.delete
         end
-        redirect '/'
+        redirect '/logout'
     end
 end
