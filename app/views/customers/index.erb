@@ -1,7 +1,30 @@
-<h1>customers/index page !!!<h1>
-<br>
+<div class=customer-index-label>
+<h1>Customer List<h1>
+</div>
 
+<div class="customer-index">
 <% @customers.each do |u|%>
-    <p><%=u.first_name%> <%=u.last_name%></p><br>
-   
+    <table>
+        <tr>
+            <th>No.</th>
+            <th>First Name:</th>
+            <th>Last Name:</th>
+            <th>Email:</th>
+            <th>Address:</th>
+            <th>City:</th>
+            <th>State:</th>
+            <th>Zip:</th> 
+        </tr>
+        <tr>
+        <td><a href="/customers/<%=u.id%>"><%=u.id%></td>
+        <td><%=u.first_name%></td>
+        <td><%=u.last_name%></td>
+        <td><%=u.email%></td>
+        <td><%=u.address%></td>
+        <td><%=u.city%></td>
+        <td><%=u.state%></td>
+        <td><%=u.zip%></td>
+        </tr>
+    </table>
 <% end %>
+</div>

@@ -4,12 +4,12 @@
 <!--[if IE 8]>    <html class="no-js ie8 oldie" lang="en"> <![endif]-->
 <!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
   <head>
-    <a href="/login">Login</a>
-    <a href="/customers/new">New customer </a>
+    <link href="https://fonts.googleapis.com/css?family=Work+Sans:300">
+    <link href="stylesheets/main.css" rel="stylesheet" type="text/css">
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
 
-    <title>SinatraProjectLandscapeFinal</title>
+    <title>Sinatra Project Landscape Final</title>
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
@@ -17,19 +17,37 @@
 
   </head>
   <body>
-    <div class="wrapper">
-
+  <div class="grid">
+    <div class="head">
+      <header>
+        <img src="images/twelve_oaks-logo.jpg" alt="logo" class="logo">
+        <nav>     
+          <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/customers/new">For More Information</a></li>
+            <li><a href="/login">Login</a></li>
+            <li><a href="/logout">Log Out</a></li>
+          </ul>    
+        </nav>
+      </header>
+    </div>
+    
+  
+    <div class="main">
         <%= yield %>
-
-      <footer class="branding">
+    </div>
+    <div class="foot">
+      <footer >
         <small>&copy; 2020 <strong>SinatraProjectLandscapeFinal</strong></small>
       </footer>
     </div>
-
+    
+  </div>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
     <!--[if lt IE 7]>
       <script src="//ajax.googleapis.com/ajax/libs/chrome-frame/1.0.2/CFInstall.min.js"></script>
       <script>window.attachEvent("onload",function(){CFInstall.check({mode:"overlay"})})</script>
     <![endif]-->
+  
   </body>
 </html>

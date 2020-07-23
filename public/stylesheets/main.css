@@ -5,111 +5,579 @@
     margin: 0;
     padding: 0;
   }
+  
 
   html, body {
+    margin: 0;
+    position: relative;
+    background-color: #DDD5C1;
+    font-family: 'Work Sans', sans-serif;
+    font-weight: 300;
     height: 100%;
     width: 100%;
   }
 
+  form {
+      align: left;
+  }
+
   /* --- Welcome Page Styles --- */
-  body {
-    background-color: lightblue;
-    color: #333;
-    font-family: Sans-Serif;
-    line-height: 18px;
+  .grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr; 
+    grid-auto-rows: minmax(75px, auto);
   }
 
-  .wrapper {
-    background: #fff;
-    -moz-box-shadow: 0 0 10px rgba(0,0,0,.3);
-    -webkit-box-shadow: 0 0 10px rgba(0,0,0,.3);
-    box-shadow: 0 0 10px rgba(0,0,0,.3);
-    margin: 16px auto;
-    max-width: 960px;
-    padding: 2.25%; /* 18px / 800px */
-    width: 85%;
+  .head {
+    grid-column-start: 1;
+    grid-column-end: 3;
+    position: absolute;
+    width: 100%;
+    height: auto;
+    background: #4F6830
+
+  }
+  .header {
+    margin-left: 15px;
+    margin-right: 15px;
+    
+   
   }
 
-  h1 {
-    font-size: 36px;
-    line-height: 54px;
-  }
-
-  h2 {
-    border-bottom: 2px solid #ccc;
-    font-size: 24px;
-    line-height: 36px;
-    margin-bottom: 16px;
-  }
-
-  h3 {
-    font-size: 18px;
-    line-height: 36px;
-  }
-
-  p {
-    margin-bottom: 18px;
-  }
-
-  .main {
-    overflow: hidden;
-  }
-
-  .content {
-    float: left;
-    width: 60%; /* 480px / 800px */
-  }
-
-  .sidebar {
-    background: #eee;
-    border: 1px solid #ccc;
-    float: right;
-    padding: 2.08333333333%; /* 5px / 240px */
-    width: 30%; /* 240px / 800px */
-  }
-
-  .sidebar ul {
-    font-size: 14px;
-  }
-
-  .branding {
+  head::after {
+    content: '';
+    display: table;
     clear: both;
   }
 
-  footer.branding {
-    border-top: 2px solid #ccc;
-    margin-top: 20px;
-    padding-top: 20px;
-  }
-}
-
-@media screen and (max-width: 600px) {
-  .wrapper {
-    -moz-box-shadow: none;
-    -webkit-box-shadow: none;
-    box-shadow: none;
-    width: auto;
+  .logo {
+    float: left;
+    height: 80px;
+    width: 220px;
+    margin-left: 100px;
+    padding: 10px;
+    top: 15px;
+    
   }
 
-  .content, .sidebar {
-    float: none;
+  nav {
+    float: center;
+  }
+
+  nav ul {
+    margin: 5px;
+    padding: 0px;
+    list-style: none;
+  }
+
+  nav li {
+    display: inline-block;
+    margin-left: 200px;
+    padding-top: 25px;
+
+    position: relative;
+  }
+
+  nav a {
+    color: #E58C0E;
+    text-decoration: none;
+    text-transform: uppercase;
+  }
+  nav a:hover {
+    color: #CE7E0C;
+
+  }
+
+  nav a::before {
+    content: '';
+    display: block;
+    height: 2px;
+    width: 100%;
+    background-color: #E58C0E;
+
+    position: absolute;
+    top: 0;
+    width: 0%;
+  }
+
+  nav a:hover::before {
     width: 100%;
   }
 
-  .sidebar {
-    background: transparent;
-    border: none;
-    border-top: 2px solid #ccc;
-    padding: 0;
+  .main {
+    grid-column-start: 1;
+    grid-column-end: 3;
+    height: 445px;
+    width: 100%;
+    margin-top: 20%;
+    background-color: #DDD5C1;
+
   }
 
-  h1 {
-    font-size: 24px;
-    line-height: 36px;
+  .logo-welcome {
+    position: absolute;
+    width: 505px;
+    height: 259px;
+    left: 553px;
+    top: 125px;
   }
 
-  h2 {
-    font-size: 18px;
-    line-height: 24px;
+  .image1-welcome {
+    position: absolute;
+    width: 212px;
+    height: 169px;
+    left: 43px;
+    top: 125px;
+  }
+
+  .image2-welcome {
+    position: absolute;
+    width: 200px;
+    height: 169px;
+    left: 309px;
+    top: 125px;
+  }
+
+  .image3-welcome {
+    position: absolute;
+    width: 466px;
+    height: 316px;
+    left: 43px;
+    top: 316px;
+  }
+
+  .image4-welcome {
+    position: absolute;
+    width: 428px;
+    height: 236px;
+    left: 553px;
+    top: 396px;
+  }
+
+  .image5-welcome {
+    position: absolute;
+    width: 339px;
+    height: 236px;
+    left: 1033px;
+    top: 396px;
+  }
+
+  .image6-welcome {
+    position: absolute;
+    width: 423px;
+    height: 259px;
+    left: 1100px;
+    top: 125px;
+  }
+
+  .image7-welcome {
+    position: absolute;
+    width: 470px;
+    height: 236px;
+    left: 1400px;
+    top: 396px;
+  }
+
+  .image8-welcome {
+    position: absolute;
+    width: 300px;
+    height: 236px;
+    left: 1570px;
+    top: 125px;
+  }
+
+  .slogan-welcome {
+    position: absolute;
+    width: 1400px;
+    height: 170px;
+    left: 230px;
+    top: 650px;
+    background-color: #585959;
+    color: #E58C0E; 
+    text-align: center;
+    font-size:
+  }
+
+  .slogan-text-welcome {
+    color: #E58C0E; 
+    text-align: center;
+    width: 90%;
+    font-size: xx-large;
+    margin:  20px;
+    
+    text-
+  }
+
+  .input {
+    position: relative;
+  `
+    height : 400px;
+  }
+
+
+  
+
+  .foot {
+    grid-column-start: 1;
+    grid-column-end: 3;
+    position: absolute;
+    width: 100%;
+    height: 60px;
+    left: 0px;
+    top: 906px;
+    background: #4F6830
+    
+
+  }
+
+  
+  .input {
+    color: #E58C0E;
+    position: relative;
+    bottom: 200px;
+    text-align: center;
+    
+  }
+
+  .show-label {
+    position: absolute;
+    width: 300px;
+    height: 40px;
+    left: 285px;
+    top: 135px;
+    text-align: center;
+    color: #E58C0E;
+    background-color: #585959;
+  }
+
+  .customer-show-label {
+    position: absolute;
+    width: 380px;
+    height: 40px;
+    left: 255px;
+    top: 135px;
+    text-align: center;
+    color: #E58C0E;
+    background-color: #585959;
+  }
+
+  .show {
+    position: absolute;
+    width: 700px;
+    height: 579px;
+    left: 100px;
+    top: 200px;
+    
+    color: #E58C0E;
+    background-color: #585959;
+  }
+
+  .show-text {
+    position: absolute;
+    left: 270px;
+    top: 50px;
+  }
+
+  .enquiry-label {
+    position: absolute;
+    width: 350px;
+    height: 40px;
+    left: 1275px;
+    top: 135px;
+    text-align: center;
+    color: #E58C0E;
+    background-color: #585959;
+  }
+
+  .enquiry {
+    position: absolute;
+    width: 700px;
+    height: 579px;
+    left: 1103px;
+    top: 200px;
+    text-align: left;
+    color: #E58C0E;    
+    background: #585959;
+    overflow: scroll;
+    
+  }
+
+  table {
+    
+    min-width: 700px;
+    text-align: left;
+    border: 1px solid;
+    border-collapse: collapse;
+    
+  }
+
+  th {
+    text-align: left;
+    height: 15px;
+    background-color: #4F6830;
+    font-weight: bold;
+  }
+
+  
+  
+
+  th, td {
+    
+    padding: 12px 15px;;
+    
+  }
+
+  .signup {
+    position: absolute;
+    left: 600px;
+    right: 12.25%;
+    top: 26.56%;
+    bottom: 9.11%;
+    width: 573px;
+    height: 425px;
+    color: #E58C0E;
+    background-color: #585959;
+    text-align: center;
+  
+  }
+
+  .enquiry_signup {
+    position: absolute;
+    left: 600px;
+    right: 12.25%;
+    top: 26.56%;
+    bottom: 9.11%;
+    width: 700px;
+    height: 425px;
+    color: #E58C0E;
+    background-color: #585959;
+    text-align: center;
+  }
+
+  .user-edit-label {
+    position: absolute;
+    width: 350px;
+    height: 40px;
+    left: 780px;
+    top: 135px;
+    text-align: center;
+    color: #E58C0E;
+    background-color: #585959;
+
+  }
+
+  .user-edit {
+    position: absolute;
+    width: 700px;
+    height: 579px;
+    left: 600px;
+    top: 200px;
+    color: #E58C0E;
+    background-color: #585959;
+
+  }
+
+  .user-edit-text {
+    position: absolute;
+    left: 230px;
+    top: 50px;
+    text-align: right;
+  }
+
+  .users-all-label {
+    position: absolute;
+    width: 350px;
+    height: 40px;
+    left: 780px;
+    top: 135px;
+    text-align: center;
+    color: #E58C0E;
+    background-color: #585959;
+  }
+
+  .users-all {
+    position: absolute;
+    width: 700px;
+    height: 579px;
+    left: 600px;
+    top: 200px;
+    text-align: left;
+    color: #E58C0E;    
+    background: #585959;
+    overflow: scroll;
+  }
+
+  .enquiry-edit-customer-info-label {
+    position: absolute;
+    left: 130px;
+    right: 12.25%;
+    top: 150px;
+    bottom: 9.11%;
+    width: 500px;
+    height: 45px;
+    color: #E58C0E;
+    background-color: #585959;
+    text-align: center;
+    
+  }
+
+  .enquiry-customer-info {
+    position: absolute;
+    left: 85px;
+    right: 12.25%;
+    top: 26.56%;
+    bottom: 9.11%;
+    width: 573px;
+    height: 425px;
+    color: #E58C0E;
+    background-color: #585959;
+    text-align: center;
+
+  }
+
+  .enquiry-customer-info-text {
+    position: absolute;
+    left: 45px;
+    top: 20px;
+    width: 500px;
+    height: 45px;
+    color: #E58C0E;
+    background-color: #585959;
+    text-align: center;
+  }
+
+  .enquiry-edit-label {
+    position: absolute;
+    left: 1120px;
+    right: 12.25%;
+    top: 150px;
+    bottom: 9.11%;
+    width: 500px;
+    height: 45px;
+    color: #E58C0E;
+    background-color: #585959;
+    text-align: center;
+
+  }
+
+  .enquiry-edit {
+    position: absolute;
+    left: 1000px;
+    top: 26.56%;
+    bottom: 9.11%;
+    width: 700px;
+    height: 425px;
+    color: #E58C0E;
+    background-color: #585959;
+    text-align: center;
+
+  }
+
+  .enquiry-edit-box {
+    position: absolute;
+    left: 20px;
+    top: 20px;
+    width: 500px;
+    height: 45px;
+    color: #E58C0E;
+    background-color: #585959;
+    text-align: center;
+  }
+
+  .customer-edit-label {
+    position: absolute;
+    left: 720px;
+    right: 12.25%;
+    top: 150px;
+    bottom: 9.11%;
+    width: 500px;
+    height: 45px;
+    color: #E58C0E;
+    background-color: #585959;
+    text-align: center;
+
+  }
+
+  .customer-edit {
+    position: absolute;
+    left: 600px;
+    top: 26.56%;
+    bottom: 9.11%;
+    width: 700px;
+    height: 425px;
+    color: #E58C0E;
+    background-color: #585959;
+    text-align: center;
+  }
+
+  .customer-edit-text {
+    position: absolute;
+    left: 0px;
+    top: 20px;
+    width: 500px;
+    height: 45px;
+    color: #E58C0E;
+    background-color: #585959;
+    text-align: right;
+  }
+
+  .customer-index-label {
+    position: absolute;
+    left: 720px;
+    right: 12.25%;
+    top: 150px;
+    bottom: 9.11%;
+    width: 500px;
+    height: 45px;
+    color: #E58C0E;
+    background-color: #585959;
+    text-align: center;
+  }
+
+  .customer-index {
+    position: absolute;
+    width: 700px;
+    height: 579px;
+    left: 603px;
+    top: 200px;
+    text-align: left;
+    color: #E58C0E;    
+    background: #585959;
+    overflow: scroll;
+  }
+
+  .employee-new-label {
+    position: absolute;
+    left: 820px;
+    right: 12.25%;
+    top: 150px;
+    bottom: 9.11%;
+    width: 300px;
+    height: 45px;
+    color: #E58C0E;
+    background-color: #585959;
+    text-align: center;
+  }
+
+  .employee-new {
+    position: absolute;
+    left: 775px;
+    top: 26.56%;
+    width: 400px;
+    height: 425px;
+    color: #E58C0E;
+    background-color: #585959;
+    text-align: center;
+  }
+
+  .employee-new-text {
+    position: absolute;
+    left: 0px;
+    top: 70px;
+    width: 300px;
+    height: 45px;
+    color: #E58C0E;
+    background-color: #585959;
+    text-align: right;
   }
 }

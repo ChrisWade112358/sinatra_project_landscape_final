@@ -1,18 +1,56 @@
-<h1>Customer show page</h1>
 
+
+<div class="customer-show-label">
+    <h1>Customer Information:</h1>
+</div>
+
+<div class="show">
+<div class="show-text">
+<label for="@customer.first_name">First Name:</label>
 <h2><%= @customer.first_name %></h2><br>
+<label for="@customer.last_name">:Last Name:</label>
 <h2><%= @customer.last_name %></h2><br>
+<label for="@customer.email">Email:</label>
 <h2><%= @customer.email %></h2><br>
+<label for="@customer.address">Address:</label>
 <h2><%= @customer.address %></h2><br>
+<label for="@customer.State">State:</label>
 <h2><%= @customer.state %></h2><br>
+<label for="@customer.zip">Zip Code:</label>
 <h2><%= @customer.zip %></h2><br>
-<br>
 
 
-
-<form method="POST" action="/users/<%= @customer.id %>">
+<br><br>
+<form method="POST" action="/customers/<%= @customer.id %>">
     <input type="hidden" id="hidden" name="_method" value="delete">
     <input type="submit" value="Delete">
 </form>
-
+<br>
+<br>
 <a href="/customers/<%= @customer.id %>/edit"><button>Edit this User</button></a>
+</div>
+</div>
+
+<div class="enquiry-label">
+    <h1>Customer Messages:</h1>
+</div>
+
+<div class="enquiry">
+<% @customer.enquiries.each do |e|%>
+   
+    <table>
+        <tr>
+            <th>No.</th> 
+            <th>Enquiry:</th>
+            <th>Customer Id:</th>
+            <th>Assigned to Employee:</th>
+        </tr>
+        <tr>
+        <td><a href="/enquiries/<%=e.id%>/edit"><%=e.id%></a></td>
+        <td width= "200px"><%=e.enquiry%></td>
+        <td><%=e.customer_id%></td>
+        <td><%=e.user_id%></td>
+        </tr>
+    </table>
+<% end %>
+</div>

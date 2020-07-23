@@ -13,6 +13,7 @@ class SessionsController < ApplicationController
         if user && user.authenticate(params[:password])
             session[:user_id] = user.id
             session[:email] = user.email
+            session[:employee] = user.employee
             puts "You are Logged in"
             redirect "/users/#{user.id}"
         else
@@ -23,13 +24,13 @@ class SessionsController < ApplicationController
                 redirect "/customers/#{customer.id}"
             else
                 puts "You are NOT Logged in"
-                redirect '/login'
+                redirect '/'
             end
         end
     end
 
     get '/logout' do
         session.clear
-        redirect '/login'
+        redirect '/'
     end
 end

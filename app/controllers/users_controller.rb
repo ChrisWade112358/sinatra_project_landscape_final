@@ -1,27 +1,28 @@
 class UsersController < ApplicationController
       
     get '/users' do
-        if current_user && current_user.password == ENV.fetch("ADMIN")
+        if current_user && current_user.name == ENV.fetch("ADMIN")
             @users= User.all
             erb :'/users/index'
         else
             puts "1. You do not have access to this information"
-            erb :welcome
+            redirect '/'
         end
         
     end
 
     get '/users/new' do 
-        if current_user && current_user.password == ENV.fetch("ADMIN")
+        if current_user && current_user.name == ENV.fetch("ADMIN")
             erb :'/users/new'
         else
             puts "2. You do not have access to this information"
-                erb :welcome
+            redirect '/'
         end
     end
 
     get '/users/:id' do
-        @user = current_user
+        @user = User.find_by_id(params[:id])
+        @enquiry = Enquiry.all
         if @user
             erb :'/users/show'
         else
@@ -30,8 +31,9 @@ class UsersController < ApplicationController
     end
 
     get '/users/:id/edit' do 
-        @user = current_user
-        if @user && current_user.password == ENV.fetch("ADMIN")
+        @user = User.find_by_id(params[:id])
+       
+        if current_user
             erb :'/users/edit'
         else
             redirect "/users"
@@ -39,27 +41,37 @@ class UsersController < ApplicationController
     end
 
     post '/users' do
-        @user = User.create(params)
-        @user.employee = true
-        if @user.save
-            redirect "/users/#{@user.id}"
+        if validate_both_email == false
+            @user = User.create(params)
+            @user.employee = true
+            if @user.save
+                redirect "/users/#{@user.id}"
+            else
+                puts "User Record Not Created Please Try Again"
+                redirect "/users/new"
+            end
         else
-            puts "User Record Not Created Please Try Again"
-            redirect "/users/new"
+            puts "Email already exsists"
+                redirect "/users/new"
         end
     end
 
     patch '/users/:id' do
-        @user = current_user
-        @user.update(name: params[:name], email: params[:email], username: params[:username], password: params[:password])
-        if @user.save
-            binding.pry
-            puts "user updated!!"
-            redirect "/users/#{@user.id}"
+        if validate_both_email == false
+            @user = current_user
+            @user.update(name: params[:name], email: params[:email], username: params[:username], password: params[:password])
+            if @user.save
+                puts "user updated!!"
+                redirect "/users/#{@user.id}"
+            else
+                puts "user not updated!!!"
+                redirect "/users/#{@user.id}/edit"
+            end
         else
-            puts "user not updated!!!"
+            @user = current_user
+            puts "email already exsists"
             redirect "/users/#{@user.id}/edit"
-        end
+        end   
     end
 
     delete '/users/:id' do
@@ -71,12 +83,12 @@ class UsersController < ApplicationController
     end
 
     get '/customers' do
-        if current_user && session[:password_digest] == ENV.fetch("ADMIN")
+        if current_user.employee == true
             @customers= Customer.all
             erb :'/customers/index'
         else
             puts "3. You do not have access to this information"
-            erb :welcome
+            redirect '/'
         end
     end
 end

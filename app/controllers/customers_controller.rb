@@ -5,14 +5,12 @@ class UsersController < ApplicationController
     end
 
     get '/customers/:id' do
-        @customer = current_customer
-        employee = session[:employee] == true
-
+        @customer = Customer.find_by_id(params[:id])
         if @customer 
             erb :'/customers/show'
         else
             if employee
-                erb :'customer/show'
+                erb :'customers/show'
             else  
                 redirect "/"
             end
@@ -30,26 +28,35 @@ class UsersController < ApplicationController
     end
 
     post '/customers' do
-        customer = Customer.create(params)
-        session[:customer_id] = customer.id
-        session[:email] = customer.email
-        binding.pry
-        if customer
-            redirect '/enquiries/new'
+        if validate_both_email == false
+            customer = Customer.create(params)
+            binding.pry
+            if customer.save
+                session[:customer_id] = customer.id
+                redirect '/enquiries/new'
+            else
+                puts "User Record Not Created Please Try Again"
+                redirect "/customers/new"
+            end
         else
-            puts "User Record Not Created Please Try Again"
+            puts "email matches exsisting email"
             redirect "/customers/new"
         end
     end
 
     patch '/customers/:id' do
-        @customer = current_customer
-        binding.pry
-        if @customer.update(first_name: params[:first_name], last_name: params[:last_name], email: params[:email], address: params[:address], state: params[:state], zip: params[:zip], password: params[:password])
-            puts "Customer EDITED!!!"
-            redirect "/customers/#{@customer.id}"
+        if validate_both_email == false
+            @customer = current_customer
+            if @customer.update(first_name: params[:first_name], last_name: params[:last_name], email: params[:email], address: params[:address], state: params[:state], zip: params[:zip], password: params[:password])
+                puts "Customer EDITED!!!"
+                redirect "/customers/#{@customer.id}"
+            else
+                puts "COUSTOMER NOT EDITED!!!!!"
+                redirect "/customers/#{@customer.id}/edit"
+            end
         else
-            puts "COUSTOMER NOT EDITED!!!!!"
+            @customer = current_customer
+            puts "email already exsists"
             redirect "/customers/#{@customer.id}/edit"
         end
     end

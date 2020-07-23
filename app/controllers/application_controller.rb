@@ -8,11 +8,11 @@ class ApplicationController < Sinatra::Base
     enable :sessions
     set :session_secret, ENV.fetch("SECRET")
 
-    
+
   end
 
   get "/" do
-    erb :welcome
+    erb :index
   end
 
   helpers do
@@ -31,6 +31,20 @@ class ApplicationController < Sinatra::Base
 
     def current_customer
       @customer = Customer.find_by_id(session[:customer_id]) if logged_in_customer?
+      
+    end
+
+    def validate_both_email
+      if User.find_by(email: params[:email])
+        return true
+      else 
+        if Customer.find_by(email: params[:email])
+          return true
+        else
+          return false
+        end
+      end
+        
       
     end
 

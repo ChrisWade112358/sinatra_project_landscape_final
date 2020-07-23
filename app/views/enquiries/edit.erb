@@ -1,0 +1,34 @@
+<div class="enquiry-edit-customer-info-label">
+    <h1>Customer Information:</h1>
+</div>
+
+<div class="enquiry-customer-info">
+<div class="enquiry-customer-info-text">
+    <label for="@enquiry.customer.first_name">First Name:</label>
+<h2><%= @enquiry.customer.first_name %></h2><br>
+<label for="@enquiry.customer.last_name">:Last Name:</label>
+<h2><%= @enquiry.customer.last_name %></h2><br>
+<label for="@enquiry.customer.email">Email:</label>
+<h2><%= @enquiry.customer.email %></h2><br>
+<label for="@enquiry.customer.address">Address:</label>
+<h2><%= @enquiry.customer.address %></h2><br>
+<label for="@enquiry.customer.State">State:</label>
+<h2><%= @enquiry.customer.state %></h2><br>
+<label for="@enquiry.customer.zip">Zip Code:</label>
+<h2><%= @enquiry.customer.zip %></h2><br>
+
+</div>
+</div>
+
+
+<div class="enquiry-edit-label">
+    <h1>Edit Message</h1>
+</div>
+
+<div class="enquiry-edit">
+<div class="enquiry-edit-box">
+     <textarea id="enquiry" name="enquiry" cols="80" rows="20"></textarea><br><br>
+
+    <input type="submit" value="submit">
+</div>
+</div>

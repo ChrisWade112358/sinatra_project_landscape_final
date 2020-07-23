@@ -5,21 +5,20 @@ class EnquiriesController < ApplicationController
         if current_user
             @user = current_user
             @enquiry = Enquiry.all
-            erb :'users/enquiries/index'
+            erb :'/enquiries/index'
         else
             puts "1. You do not have access to this information"
-            erb :welcome
+            redirect '/'
         end
         
     end
 
     get '/enquiries/new' do 
-        binding.pry
         if current_customer
             erb :'/enquiries/new'
         else
             puts "2. You do not have access to this information"
-            erb :welcome
+            redirect '/'
         end
     end
 
@@ -32,7 +31,7 @@ class EnquiriesController < ApplicationController
                 erb :'enquiries/show'
             else 
                 puts "You DO NOT HAVE PERMISSION to ACCESS THIS Enquiry"              
-                erb :welcome
+                redirect '/'
             end
         end
     end
@@ -42,25 +41,25 @@ class EnquiriesController < ApplicationController
         if @enquiry.customer_id == session[:customer_id]
             erb :'/enquiries/edit'
         else
-            if @enquiry == session[:user_id]
-                erb :'enquiries/edit'
-            else 
-                puts "You DO NOT HAVE PERMISSION to ACCESS THIS Enquiry"              
-                erb :welcome
+            if session[:employee]== true
+                erb :'/enquiries/edit'
+            else
+            puts "You DO NOT HAVE PERMISSION to ACCESS THIS Enquiry"              
+            redirect '/'
             end
         end
     end
 
     post '/enquiries' do
         @enquiry = Enquiry.create(params)
+        @enquiry.customer_id = session[:customer_id]
         binding.pry
-        if session[:customer_id]
+        if @enquiry.save
             @enquiry.customer_id = session[:customer_id]
-            binding.pry
             redirect "/customers/#{@enquiry.customer_id}"
         else 
             puts "User Record Not Created Please Try Again"
-            redirect "/customers/new"
+            redirect "/enquiries/new"
             
            
         end 
@@ -68,25 +67,15 @@ class EnquiriesController < ApplicationController
         
     end
 
-    patch '/users/:id' do
+    patch '/enquiries/:id' do
         @enquiry = Enquiry.find_by_id(params[:id])
         @enquiry.update(enquiry: params[:enquiry], user_id: params[:user_id])
         if @enquiry.customer_id && enquiry.save
-            binding.pry
             puts "user updated!!"
-            redirect "/customers/#{@enquiry.customer_id}"
-        end 
-        if @enquiry.user_id && enquiry.save
-            binding.pry
-            puts "user updated!!"
-            redirect "/customers/#{@enquiry.customer_id}"
-        end 
-        if @enquiry.customer_id && !enquiry.save
+            redirect "/customers/#{@enquiry.customer_id}" 
+        else 
             puts "user not updated!!!"
             redirect "/customers/#{@enquiry.customer_id}/edit"
-        else
-            puts "user not updated!!!"
-            redirect "/users/#{@enquiry.user_id}/edit"
         end
     end
 
