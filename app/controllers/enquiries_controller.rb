@@ -53,7 +53,7 @@ class EnquiriesController < ApplicationController
     post '/enquiries' do
         @enquiry = Enquiry.create(params)
         @enquiry.customer_id = session[:customer_id]
-        binding.pry
+    
         if @enquiry.save
             @enquiry.customer_id = session[:customer_id]
             redirect "/customers/#{@enquiry.customer_id}"

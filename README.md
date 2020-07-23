@@ -1,1 +1,5 @@
+This is a Sinatra project that allows customers to signup and enquire about services. The User(the employees) can access the enquiries and respond on their own pages. There is also a boss "bubba" who can see all employees and is the only one who can add an employee. Customers can access their enquiries and update them or see repsonses from employees. Customers cannot access employee data or another customer's data. Employees (other than "Bubba") cannot access other employees data or setup new employees. Enquiries are assigned to a customer. Employees can assign themselves to an enquiry so we know who has spoken to who. There are also some extra fields in the enquiry data that are there for later being able to associate an estimate and later an invoice to an inquery but those features are not included in this version.
 
+To use: open with opprpriate Ruby IDE and run shotgun in the terminal then follow the wab address given in your browser.
+
+license:  https://opensource.org/licenses/MIT

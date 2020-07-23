@@ -30,7 +30,6 @@ class UsersController < ApplicationController
     post '/customers' do
         if validate_both_email == false
             customer = Customer.create(params)
-            binding.pry
             if customer.save
                 session[:customer_id] = customer.id
                 redirect '/enquiries/new'
